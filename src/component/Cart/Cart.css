@@ -1,0 +1,23 @@
+.wrapper{
+    background-color:#3F3F3F;
+    height: 1500px;
+}
+
+.list-order{
+    border-top: 1px solid;
+    border-radius: 15px;
+    width:800px;
+    height:auto;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px 20px;
+}
+
+.card{
+    padding: 10px 0;
+}
+
+.card-body{
+    text-align: left;
+    padding-right: 270px;
+}

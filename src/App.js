@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./component/Header";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Routes } from "./Router";
+import { useState } from "react";
+import data from "./component/Data/data";
 
 function App() {
+  const { product } = data;
+  const [cart, setCart] = useState([]);
+
+  const handleAddProduct = (productItem) => {
+    const productExists = cart.find((item) => item.id === productItem.id);
+    if (productExists) {
+      setCart(
+        cart.map((item) =>
+          item.id === productItem.id
+            ? { ...productExists, quantity: productExists.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart([...cart, { ...productItem, quantity: 1 }]);
+    }
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header />
+        <Routes
+          product={product}
+          cart={cart}
+          handleAddProduct={handleAddProduct}
+        />
+      </Router>
     </div>
   );
 }
